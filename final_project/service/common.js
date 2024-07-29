@@ -1,4 +1,5 @@
 let books = require("../assets/booksdb.js");
+let users = require("../router/auth_users.js").users;
 
 const getAllBooks = () => {
   return new Promise((resolve, _) => {
@@ -25,8 +26,13 @@ const deleteBookReview = (isbn, user) => {
     }, 1000);
   });
 };
+
+const doesExist = (username) => {
+  return users.some((user) => user.username === username);
+};
 module.exports = {
   getAllBooks,
   updateBookReview,
   deleteBookReview,
+  doesExist,
 };

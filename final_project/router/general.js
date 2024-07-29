@@ -1,7 +1,6 @@
 const express = require("express");
-let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
-const { getAllBooks } = require("../service/common.js");
+const { getAllBooks, doesExist } = require("../service/common.js");
 const public_users = express.Router();
 
 public_users.post("/register", (req, res) => {

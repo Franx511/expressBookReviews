@@ -5,8 +5,6 @@ const regd_users = express.Router();
 
 let users = [];
 
-const isValid = (username) => users.some((user) => user.username === username);
-
 const authenticatedUser = (username, password) => {
   return users.some(
     (user) => user.username === username && user.password === password
@@ -54,5 +52,4 @@ regd_users.delete("/auth/review/:isbn", async (req, res) => {
 });
 
 module.exports.authenticated = regd_users;
-module.exports.isValid = isValid;
 module.exports.users = users;
