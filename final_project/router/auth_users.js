@@ -1,6 +1,10 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const { updateBookReview, deleteBookReview } = require("../service/common");
+const {
+  updateBookReview,
+  deleteBookReview,
+  getAllBooks,
+} = require("../service/common");
 const regd_users = express.Router();
 
 let users = [];
@@ -43,7 +47,8 @@ regd_users.put("/auth/review/:isbn", async (req, res) => {
 regd_users.delete("/auth/review/:isbn", async (req, res) => {
   const user = req.session.authorization.username;
   const isbn = req.params.isbn;
-  if (!books[isbn]) {
+  const allBooks = await getAllBooks();
+  if (!allBooks[isbn]) {
     res.status(400).json({ message: "invalid ISBN." });
   } else {
     await deleteBookReview(isbn, user);
