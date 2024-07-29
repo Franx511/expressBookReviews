@@ -1,5 +1,4 @@
 let books = require("../assets/booksdb.js");
-let users = require("../router/auth_users.js").users;
 
 const getAllBooks = () => {
   return new Promise((resolve, _) => {
@@ -28,6 +27,7 @@ const deleteBookReview = (isbn, user) => {
 };
 
 const doesExist = (username) => {
+  let users = require("../router/auth_users.js").users;
   if (users.length > 0) {
     return users.some((user) => user.username === username);
   }
