@@ -28,7 +28,10 @@ const deleteBookReview = (isbn, user) => {
 };
 
 const doesExist = (username) => {
-  return users.some((user) => user.username === username);
+  if (users.length > 0) {
+    return users.some((user) => user.username === username);
+  }
+  return false;
 };
 module.exports = {
   getAllBooks,
